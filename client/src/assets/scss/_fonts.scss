@@ -1,0 +1,13 @@
+@font-face {
+  font-family: '#{$chat-room-font-family}';
+  src: url('#{$chat-room-ff-path}/#{$chat-room-font-family}.eot?s3lb61');
+  src: url('#{$chat-room-ff-path}/#{$chat-room-font-family}.eot?s3lb61#iefix')
+      format('embedded-opentype'),
+    url('#{$chat-room-ff-path}/#{$chat-room-font-family}.ttf?s3lb61') format('truetype'),
+    url('#{$chat-room-ff-path}/#{$chat-room-font-family}.woff?s3lb61') format('woff'),
+    url('#{$chat-room-ff-path}/#{$chat-room-font-family}.svg?s3lb61##{$chat-room-font-family}')
+      format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}

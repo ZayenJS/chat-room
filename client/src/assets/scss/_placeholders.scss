@@ -1,0 +1,14 @@
+%btn {
+  border: none;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  transition: all 250ms ease-in-out;
+
+  color: darken($main-color, 50%);
+  background-color: $main-color;
+
+  &:hover {
+    background-color: lighten($main-color, 15%);
+  }
+}

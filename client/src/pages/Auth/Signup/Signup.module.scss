@@ -1,0 +1,54 @@
+@import '../../../assets/scss/variables';
+
+.Arrow__Back {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    &:before {
+      color: lighten($main-color, 15%);
+    }
+  }
+
+  &:before {
+    font-family: $chat-room-font-family;
+    content: $arrow-back;
+    font-size: 2.5rem;
+    color: $main-color;
+    position: relative;
+    z-index: 1;
+    transition: all 250ms ease-in-out;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    right: 0.5rem;
+    top: 0.25rem;
+    background-color: #fff;
+    height: 1.6rem;
+    width: 1.6rem;
+  }
+}
+
+.BtnContainer {
+  @include flex(center, flex-end);
+
+  button {
+    border: none;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    transition: all 250ms ease-in-out;
+
+    color: darken($main-color, 50%);
+    background-color: $main-color;
+
+    &:hover {
+      background-color: lighten($main-color, 15%);
+    }
+  }
+}

@@ -1,0 +1,66 @@
+@import '../../assets/scss/variables';
+
+@keyframes appear {
+  from {
+    transform: translate(200%, -50%) skew(-30deg);
+  }
+  75% {
+    transform: translate(-60%, -50%) skew(10deg);
+  }
+  to {
+    transform: translate(-50%, -50%) skew(0);
+  }
+}
+
+.Container {
+  position: relative;
+  min-height: 100vh;
+  background: #000 url('../../assets/images/auth-bg.jpg') no-repeat center;
+  overflow: hidden;
+
+  section {
+    @include flex(center, center, column nowrap);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 32rem;
+    overflow: hidden;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 750px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 5px 5px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    background-color: rgba(218, 218, 218, 0.933);
+    padding: 4rem;
+  }
+
+  form {
+    @include flex(center, center, column nowrap);
+    gap: 3rem;
+    width: 100%;
+    // transform: translate(200%, -50%) skew(-30deg);
+    // animation: appear 1.25s 1.25s forwards cubic-bezier(0.86, 0, 0.07, 1);
+
+    div {
+      width: 100%;
+
+      input {
+        background-color: rgba(255, 255, 255, 0.5);
+        border: none;
+        transition: all 250ms ease-in-out;
+        border-bottom: 4px solid transparent;
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          border-bottom: 4px solid $main-color;
+        }
+      }
+
+      label {
+        font-weight: 600;
+      }
+    }
+  }
+}

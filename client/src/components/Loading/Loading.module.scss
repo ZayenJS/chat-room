@@ -1,0 +1,44 @@
+@keyframes anim {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+@keyframes anim2 {
+  from {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(-100%);
+  }
+}
+
+%Base {
+  height: 100vh;
+  position: fixed;
+  z-index: 100000;
+  box-shadow: 4px 0 rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.Container {
+  @extend %Base;
+  background-color: #000;
+  color: #ddd;
+  animation: anim2 1s 1s forwards ease-in-out;
+}
+
+.Initial {
+  @extend %Base;
+  color: #000;
+  background: #ddd url('https://pbs.twimg.com/profile_images/947082248234373121/c2XUo_FL.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: rgb(172, 162, 162);
+  animation: anim 1s 1s forwards ease-in-out;
+}

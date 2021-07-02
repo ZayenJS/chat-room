@@ -1,0 +1,13 @@
+@import 'reset';
+@import 'variables';
+@import 'fonts';
+@import 'placeholders';
+
+html {
+  background-color: #222;
+  font-family: sans-serif;
+}
+
+button {
+  @extend %btn;
+}

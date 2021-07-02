@@ -1,0 +1,18 @@
+@import '../../assets/scss/variables';
+
+.Form {
+  @include flex(stretch, center);
+  gap: 1rem;
+}
+
+.Btn {
+  @include flex(center, center);
+  gap: 1rem;
+
+  &:after {
+    font-family: $chat-room-font-family;
+    content: $send-plane;
+    font-size: 1.25rem;
+    color: darken($main-color, 50%);
+  }
+}

@@ -1,0 +1,28 @@
+.Base {
+  position: relative;
+
+  input {
+    border-radius: 5px;
+    padding: 1rem;
+    width: 100%;
+    font-size: 1.25rem;
+
+    &:focus + label,
+    &:not(:placeholder-shown) + label {
+      top: -1rem;
+      left: 0;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+  }
+  label {
+    cursor: text;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 0.5rem;
+    transform: translate(0, -50%);
+    font-size: 1rem;
+    transition: all 250ms ease-in-out;
+  }
+}
