@@ -1,11 +1,10 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import ProtectedRoute from '../containers/hoc/ProtectedRoute';
 
 import { AppPropsFromRedux } from '../containers/App/App';
 import Loading from '../components/Loading/Loading';
-import { useState } from 'react';
 import Auth from '../containers/pages/Auth';
 import Public from '../pages/Public/Public';
 

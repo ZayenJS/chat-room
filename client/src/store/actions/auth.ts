@@ -3,6 +3,7 @@ import { User } from '../../models/User';
 
 export const CHECK_AUTH = 'CHECK_AUTH';
 export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
 export const SIGNUP = 'SIGNUP';
 
 export interface CheckAuthAction {
@@ -16,6 +17,11 @@ export interface LoginAction {
   errors?: Error[];
 }
 
+export interface LogoutAction {
+  type: typeof LOGOUT;
+  isLoggedOut?: boolean;
+}
+
 export interface SignupAction {
   type: typeof SIGNUP;
   errors?: Error[];
@@ -27,6 +33,10 @@ export const login = (user?: User, errors?: Error[]): LoginAction => ({
   user,
   errors,
 });
+export const logout = (isLoggedOut?: boolean): LogoutAction => ({
+  type: LOGOUT,
+  isLoggedOut,
+});
 export const signup = (errors?: Error[]): SignupAction => ({ type: SIGNUP, errors });
 
-export type AuthActions = CheckAuthAction | LoginAction | SignupAction;
+export type AuthActions = CheckAuthAction | LoginAction | LogoutAction | SignupAction;

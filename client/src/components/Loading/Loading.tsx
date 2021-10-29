@@ -1,5 +1,7 @@
 import { FC, HTMLAttributes } from 'react';
 
+import chat from '../../assets/images/svg/chat.svg';
+
 import styles from './Loading.module.scss';
 
 interface LoadingProps extends HTMLAttributes<HTMLDivElement> {
@@ -12,9 +14,20 @@ const Loading: FC<LoadingProps> = ({ initial = false, onAnimationStart, onAnimat
       onAnimationStart={onAnimationStart}
       onAnimationEnd={onAnimationEnd}
       className={styles[`${initial ? 'Initial' : 'Container'}`]}>
-      <div>
-        <h2 className={styles.Title}>Loading</h2>
-        <p className={styles.Subtitle}>Please wait...</p>
+      <div className={styles.Content}>
+        <div>
+          <img src={chat} alt="" />
+          <strong>Chatroom</strong>
+        </div>
+        <div>
+          <h2 className={styles.Title}>Chargement</h2>
+          <p className={styles.Subtitle}>
+            Veuillez patienter
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+          </p>
+        </div>
       </div>
     </div>
   );

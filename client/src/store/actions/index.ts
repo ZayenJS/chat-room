@@ -3,3 +3,4 @@ export * from './global';
 export * from './socket';
 export * from './auth';
 export * from './chat';
+export * from './pages';

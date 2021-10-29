@@ -51,6 +51,13 @@ export class AuthResolver {
     return response;
   }
 
+  @Mutation(() => Boolean)
+  logout(@Ctx() { req }: Context) {
+    delete req.session.user;
+
+    return !('user' in req.session);
+  }
+
   @Query(() => UserResponse)
   async checkAuth(@Ctx() { req }: Context) {
     const response: UserResponse = { errors: [] };

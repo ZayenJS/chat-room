@@ -19,7 +19,7 @@ async function main() {
   const PORT = process.env.PORT ?? 8080;
   const app = express();
   const server = http.createServer(app);
-  const redis = createClient();
+  const redis = createClient({ host: 'chat-room-redis' });
   SocketIO.init(server);
 
   app.use((req: EnhancedRequest, res: Response, next: NextFunction) => {
@@ -67,13 +67,19 @@ async function main() {
     url: process.env.PG_URL,
     entities: [path.join(__dirname, 'Models', '*.js')],
     synchronize: true,
-    // logging: true,
+    logging: true,
   });
+
+  console.log('Connected to DB !');
 
   apolloServer.applyMiddleware({
     app,
     cors: { credentials: true, origin: process.env.CLIENT_URL },
   });
+
+  app.get('/', (req: EnhancedRequest, res: Response, next: NextFunction) =>
+    res.send('Hello from API !'),
+  );
 
   app.get('*', (req: EnhancedRequest, res: Response, next: NextFunction) =>
     res.send('here will be the react app'),

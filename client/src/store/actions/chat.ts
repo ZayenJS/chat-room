@@ -1,11 +1,24 @@
+import { IEmojiData } from 'emoji-picker-react';
+
 import { Message } from '../../models/Message';
 
+export interface IAddEmoji {
+  reducer: string;
+  name: string;
+  emojiObject: IEmojiData;
+}
+
 export const ADD_CHAT_MESSAGE = 'ADD_CHAT_MESSAGE';
+export const ADD_EMOJI = 'ADD_EMOJI';
 export const GET_ROOM_BY_ID = 'GET_ROOM_BY_ID';
 export const UPDATE_CHAT = 'UPDATE_CHAT';
 
 export interface AddChatMessageAction {
   type: typeof ADD_CHAT_MESSAGE;
+}
+export interface AddEmojiAction {
+  type: typeof ADD_EMOJI;
+  payload: IAddEmoji;
 }
 export interface GetRoomByIdAction {
   type: typeof GET_ROOM_BY_ID;
@@ -20,6 +33,7 @@ export interface UpdateChatAction {
 export const addChatMessage = (): AddChatMessageAction => ({
   type: ADD_CHAT_MESSAGE,
 });
+export const addEmoji = (payload: IAddEmoji): AddEmojiAction => ({ type: ADD_EMOJI, payload });
 export const getRoomById = (roomId: string, room?: any): GetRoomByIdAction => ({
   type: GET_ROOM_BY_ID,
   roomId,
@@ -30,4 +44,8 @@ export const updateChat = (message: Message): UpdateChatAction => ({
   message,
 });
 
-export type ChatActions = AddChatMessageAction | GetRoomByIdAction | UpdateChatAction;
+export type ChatActions =
+  | AddChatMessageAction
+  | AddEmojiAction
+  | GetRoomByIdAction
+  | UpdateChatAction;

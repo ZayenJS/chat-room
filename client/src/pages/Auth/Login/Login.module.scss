@@ -6,11 +6,17 @@
   gap: 1rem;
 }
 
+.Fields {
+  @include flex(center, center, column nowrap);
+  gap: 2rem;
+}
+
 .BtnContainer {
-  @include flex(center, space-between);
+  @include flex(stretch, space-between);
 
   a {
     @extend %btn;
+    @include flex(center, center);
   }
 }
 

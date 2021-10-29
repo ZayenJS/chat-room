@@ -2,7 +2,6 @@ import { MiddlewareAPI, Dispatch } from 'redux';
 import { gql } from '@apollo/client';
 
 import { apolloClient } from '../../utils/apollo';
-import axios from '../../utils/axios';
 import { ADD_CHAT_MESSAGE, ChatActions, GET_ROOM_BY_ID } from '../actions';
 import { State } from '../reducers';
 
@@ -19,12 +18,14 @@ export const chatMiddleware =
                 name
                 type
                 creator {
+									id
                   username
                 }
                 messages {
                   id
                   content
                   user {
+										id
                     username
                   }
                 }
@@ -46,7 +47,7 @@ export const chatMiddleware =
             mutation addMessage {
               addMessage(
                 data: {
-                  content: "${chat.message}"
+                  content: """${chat.message}"""
                   user_id: ${user.user?.id}
                   room_id: "${chat?.room?.id}"
                 }

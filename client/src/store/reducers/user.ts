@@ -1,5 +1,5 @@
 import { User } from '../../models/User';
-import { AuthActions, CHECK_AUTH, LOGIN } from '../actions';
+import { AuthActions, CHECK_AUTH, LOGIN, LOGOUT } from '../actions';
 
 export interface UserReducerState {
   user: User | null;
@@ -17,6 +17,11 @@ const reducer = (
       return {
         ...state,
         user: action.user ?? null,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        user: action.isLoggedOut ? null : state.user,
       };
     default:
       return state;

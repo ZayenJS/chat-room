@@ -1,5 +1,5 @@
 import { FC } from 'react';
-
+import { AnimatePresence } from 'framer-motion';
 import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
@@ -13,20 +13,26 @@ const Auth: FC<AuthPropsFromRedux> = ({ login, signup, isSignupSuccess, isAuth }
 
   return (
     <section className={styles.Container}>
-      <Switch>
-        <Redirect exact from={`${match.path}`} to={`${match.path}/connexion`} />
-        <Route
-          exact
-          path={`${match.path}/connexion`}
-          render={(routeProps) => <Login {...routeProps} isAuth={isAuth} login={login} />}
-        />
-        <Route
-          path={`${match.path}/inscription`}
-          render={(routeProps) => (
-            <Signup {...routeProps} isSignupSuccess={isSignupSuccess} signup={signup} />
-          )}
-        />
-      </Switch>
+      <Route
+        render={({ location }) => (
+          <AnimatePresence exitBeforeEnter>
+            <Switch location={location} key={location.pathname}>
+              <Redirect exact from={`${match.path}`} to={`${match.path}/connexion`} />
+              <Route
+                exact
+                path={`${match.path}/connexion`}
+                render={(routeProps) => <Login {...routeProps} isAuth={isAuth} login={login} />}
+              />
+              <Route
+                path={`${match.path}/inscription`}
+                render={(routeProps) => (
+                  <Signup {...routeProps} isSignupSuccess={isSignupSuccess} signup={signup} />
+                )}
+              />
+            </Switch>
+          </AnimatePresence>
+        )}
+      />
     </section>
   );
 };

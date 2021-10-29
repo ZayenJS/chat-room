@@ -24,8 +24,7 @@ const Field: FC<FieldPropsFromRedux> = ({
   ) => {
     if (changeValue) {
       if (event.target.type === 'file') {
-        //@ts-ignore
-        const file = { file: event.target.files[0] };
+        const file = { file: (event.target as HTMLInputElement).files?.[0] };
 
         //@ts-ignore
         return changeValue(file);
@@ -79,6 +78,7 @@ const Field: FC<FieldPropsFromRedux> = ({
             id={id}
             placeholder={placeholder}
             value={value}
+            onKeyUp={onKeyUp}
             onChange={onChangeHandler}></textarea>
         </>
       );

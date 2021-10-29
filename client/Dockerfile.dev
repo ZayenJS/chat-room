@@ -1,0 +1,19 @@
+FROM node
+
+WORKDIR /home/user/app
+
+COPY package.json .
+
+RUN yarn
+
+COPY . .
+
+EXPOSE 3000
+
+RUN chown -R node:node /home/user/app
+
+USER node
+
+VOLUME [ "/home/user/app/node_modules" ]
+
+CMD [ "yarn", "start" ]

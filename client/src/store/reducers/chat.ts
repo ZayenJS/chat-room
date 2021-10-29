@@ -1,6 +1,7 @@
 import { Room } from '../../models/Room';
 import {
   ADD_CHAT_MESSAGE,
+  ADD_EMOJI,
   ChatActions,
   GET_ROOM_BY_ID,
   GlobalActions,
@@ -33,6 +34,14 @@ const reducer = (
         ...state,
         message: '',
       };
+    case ADD_EMOJI:
+      if (action.payload.reducer === 'chat') {
+        return {
+          ...state,
+          message: state.message + action.payload.emojiObject.emoji,
+        };
+      }
+      return state;
     case UPDATE_CHAT:
       const room = { ...state.room } as Room;
       console.log(action);

@@ -4,8 +4,9 @@
   padding: 1rem 2rem;
   font-size: 1.1rem;
   transition: all 250ms ease-in-out;
+  font-family: inherit;
 
-  color: darken($main-color, 50%);
+  color: $text-color;
   background-color: $main-color;
 
   &:hover {

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { FC, FormEvent } from 'react';
+import { FC, useEffect, FormEvent } from 'react';
+import { motion } from 'framer-motion';
 import { Link, useHistory } from 'react-router-dom';
 import Field from '../../../containers/components/Field/Field';
 
@@ -23,30 +23,39 @@ const Signup: FC<SignupProps> = ({ signup, isSignupSuccess }) => {
   };
 
   return (
-    <section>
+    <motion.section
+      transition={{ duration: 0.5 }}
+      initial={{ y: '-50%', x: '-50%', rotateY: 90 }}
+      animate={{ y: '-50%', x: '-50%', rotateY: 0 }}
+      exit={{ y: '-50%', x: '-50%', rotateY: 90 }}>
       <div className={styles.Blur}></div>
       <form onSubmit={formSubmitHandler}>
-        <Link to="/auth/connexion" className={styles.Arrow__Back}></Link>
-        <Field name="email" reducerName="auth" type="email" label="Email" placeholder=" " />
-        <Field
-          name="username"
-          reducerName="auth"
-          type="text"
-          label="Nom d'utilisateur"
-          placeholder=" "
-        />
-        <Field
-          name="password"
-          reducerName="auth"
-          type="password"
-          label="Mot de passe"
-          placeholder=" "
-        />
-        <div className={styles.BtnContainer}>
-          <button>S'inscrire</button>
-        </div>
+        <fieldset>
+          <legend>Inscription</legend>
+          <Link to="/auth/connexion" className={styles.Arrow__Back}></Link>
+          <div className={styles.Fields}>
+            <Field name="email" reducerName="auth" type="email" label="Email" placeholder=" " />
+            <Field
+              name="username"
+              reducerName="auth"
+              type="text"
+              label="Nom d'utilisateur"
+              placeholder=" "
+            />
+            <Field
+              name="password"
+              reducerName="auth"
+              type="password"
+              label="Mot de passe"
+              placeholder=" "
+            />
+          </div>
+          <div className={styles.BtnContainer}>
+            <button>S'inscrire</button>
+          </div>
+        </fieldset>
       </form>
-    </section>
+    </motion.section>
   );
 };
 

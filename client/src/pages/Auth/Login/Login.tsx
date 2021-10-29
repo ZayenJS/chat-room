@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
-import { FC, FormEvent } from 'react';
+import { FC, FormEvent, useEffect } from 'react';
 import { Link, RouteComponentProps, useHistory } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
 import Field from '../../../containers/components/Field/Field';
 
 import styles from './Login.module.scss';
@@ -24,32 +23,42 @@ const Login: FC<LoginProps & RouteComponentProps> = ({ login, isAuth }) => {
   };
 
   return (
-    <section className={styles.Container}>
+    <motion.section
+      transition={{ duration: 0.5 }}
+      initial={{ y: '-50%', x: '-50%', rotateY: 90 }}
+      animate={{ y: '-50%', x: '-50%', rotateY: 0 }}
+      exit={{ y: '-50%', x: '-50%', rotateY: 90 }}
+      className={styles.Container}>
       <form onSubmit={formSubmitHandler}>
-        <Field
-          name="emailOrUsername"
-          reducerName="auth"
-          type="text"
-          label="Nom d'utilisateur ou e-mail"
-          placeholder=" "
-        />
+        <fieldset>
+          <legend>Connexion</legend>
+          <div className={styles.Fields}>
+            <Field
+              name="emailOrUsername"
+              reducerName="auth"
+              type="text"
+              label="Nom d'utilisateur ou e-mail"
+              placeholder=" "
+            />
 
-        <Field
-          name="password"
-          reducerName="auth"
-          type="password"
-          label="Mot de passe"
-          placeholder=" "
-        />
-        <div className={styles.BtnContainer}>
-          <Link to={`/auth/inscription`}>Pas de compte ?</Link>
-          <button>Se connecter</button>
-        </div>
+            <Field
+              name="password"
+              reducerName="auth"
+              type="password"
+              label="Mot de passe"
+              placeholder=" "
+            />
+          </div>
+          <div className={styles.BtnContainer}>
+            <Link to={`/auth/inscription`}>Pas de compte ?</Link>
+            <button>Se connecter</button>
+          </div>
+        </fieldset>
       </form>
       <Link className={styles.Forgot__Password} to="/auth/mot-de-passe-oublie">
         Mot de passe oublié ?
       </Link>
-    </section>
+    </motion.section>
   );
 };
 

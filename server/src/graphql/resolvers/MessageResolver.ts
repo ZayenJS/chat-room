@@ -16,8 +16,10 @@ export class MessageResolver {
   async addMessage(@Arg('data') data: AddMessageData) {
     const { content, user_id, room_id } = data;
 
-    const user = await User.findOne({ id: +user_id });
-    const room = await Room.findOne({ id: room_id });
+    const userPromise = User.findOne({ id: +user_id });
+    const roomPromise = Room.findOne({ id: room_id });
+
+    const [user, room] = await Promise.all([userPromise, roomPromise]);
 
     if (user && room) {
       const message = Message.create({
@@ -33,7 +35,14 @@ export class MessageResolver {
 
       const io = SocketIO.getIo();
 
-      io.in(room.id).emit('new_message', message);
+      io.in(room.id).emit('new_message', {
+        ...message,
+        id: +message.id,
+        user: {
+          ...message.user,
+          id: +message.user!.id,
+        },
+      });
 
       return message;
     }

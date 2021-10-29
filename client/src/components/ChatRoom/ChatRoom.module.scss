@@ -1,8 +1,43 @@
 @import '../../assets/scss/variables';
 
+.Container {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 4rem;
+
+  ul {
+    color: #fff;
+  }
+
+  .Message {
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 900px;
+    margin: 2rem 0;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.904);
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: darken($main-color, 50%);
+
+    &.Self {
+      background-color: transparentize($main-color, 0.75);
+      margin-left: auto;
+      color: #fff;
+    }
+  }
+}
+
 .Form {
   @include flex(stretch, center);
   gap: 1rem;
+  position: relative;
+
+  textarea {
+    height: 100%;
+    resize: none;
+    font-family: sans-serif;
+  }
 }
 
 .Btn {
@@ -14,5 +49,21 @@
     content: $send-plane;
     font-size: 1.25rem;
     color: darken($main-color, 50%);
+  }
+}
+
+.Picker {
+  position: absolute;
+  bottom: 4rem;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  transition: all 250ms ease-in-out;
+
+  &.Visible {
+    opacity: 1;
+    height: 20rem;
+    pointer-events: all;
   }
 }
